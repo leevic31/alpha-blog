@@ -64,3 +64,5 @@ gem 'sprockets', '~> 3.7'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'sassc-rails'
+
+gem 'will_paginate', '~> 4.0'

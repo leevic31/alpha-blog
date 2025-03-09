@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "ALPHA BLOG", root_path, class: "navbar-brand"%>
+    <%= link_to "Bloggers", users_path, class: "navbar-brand"%>
+    <%= link_to "Articles", articles_path, class: "navbar-brand" %>
+    <% if logged_in? %>
+        <%= link_to "Create new article", new_article_path, class: "navbar-brand" %>
+    <% end %>
+    <%= link_to "View articles", articles_path, class: "navbar-brand"%>
+    <% if logged_in? %>
+        <div class="nav-item dropdown navbar-brand">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= "(Admin)" if current_user.admin? %> Profile [<%= current_user.username%>]
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "View profile", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Edit profile", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Delete profile", user_path(current_user), method: :delete, class: "dropdown-item text-danger", data: {confirm: "Are you sure?"} %>
+            </div>
+        </div>
+        <%= link_to "Logout", logout_path, class: "navbar-brand", method: :delete %>
+    <% else %>
+        <%= link_to "Log in", login_path, class: "navbar-brand"%>
+        <%= link_to "Sign up", signup_path, class: "navbar-brand"%>
+    <% end %>
+</nav>
